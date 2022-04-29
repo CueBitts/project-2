@@ -79,7 +79,29 @@ window.addEventListener('click', (event) => {
 
 const cartModal = document.getElementById('cartModal')
 function cartModalOpen() {
+    const itemList = document.getElementById('itemList')
+    const totalList = document.getElementById('totalList')
+    
+    itemList.innerText = ''
+    totalList.innerText = ''
+
     cartModal.style.display = 'block'
+    
+    items.forEach(item => {
+        const name = document.createElement('name')
+        name.innerText = item.name
+        name.classList.add('name')
+
+        const price = document.createElement('price')
+        price.innerText = item.price
+        name.classList.add('price')
+
+        itemList.appendChild(name)
+        itemList.appendChild(price)
+    })
+    const totalHelper = document.createElement('total')
+    totalHelper.innerText = `Total: $${total}`
+    totalList.appendChild(totalHelper)
 }
 
 window.addEventListener('click', (event) => {
@@ -109,9 +131,12 @@ function menuModalOpen(restaurantData) {
     })
 }
 
+let total = 0
+
 function addItem(item) {
     items.push(item)
-    // console.log(cart)
+    total += item.price
+    console.log(items)
 }
 
 function addRestaurants (restaurantData) {

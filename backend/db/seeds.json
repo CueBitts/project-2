@@ -1,0 +1,41 @@
+[
+    {
+        "name": "MongoDB-lian Grill",
+        "img": "https://images.otstatic.com/prod/26465984/2/huge.jpg",
+        "hrs": [15, 23],
+        "time": 45,
+        "menu": [
+            {"name": "Egg Rolls", "price": 5},
+            {"name": "Potstickers", "price": 6},
+            {"name": "Teriyaki Shrimp", "price": 11},
+            {"name": "Teriyaki Beef", "price": 12},
+            {"name": "Spicy Shrimp", "price": 14}
+        ]
+    },
+    {
+        "name": "Cup of JavaScript",
+        "img": "https://www.cancer.org/content/dam/cancer-org/images/photographs/single-use/espresso-coffee-cup-with-beans-on-table-restricted.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg",
+        "hrs": [6, 14],
+        "time": 20,
+        "menu": [
+            {"name": "Coffee", "price": 3},
+            {"name": "Mocha", "price": 4},
+            {"name": "Latte", "price": 5},
+            {"name": "Bagel", "price": 5},
+            {"name": "Croissant", "price": 6}
+        ]
+    },
+    {
+        "name": "Mc-DOM-al's",
+        "img": "https://www.eatthis.com/wp-content/uploads/sites/4/2021/06/mcdonalds-2.jpg?quality=82&strip=1",
+        "hrs": [0, 24],
+        "time": 15,
+        "menu": [
+            {"name": "French Fries", "price": 2},
+            {"name": "Soft Drink", "price": 2},
+            {"name": "Hamburger", "price": 3},
+            {"name": "Cheeseburger", "price": 3},
+            {"name": "Chicken Sandwich", "price": 3}
+        ]
+    }
+]

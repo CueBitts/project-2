@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POST-mates</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <nav>
+        <h1>POST-mates</h1>
+        <ul class="nav">
+            <button class="button" id="addARestaurant">Add a Restaurant</button>
+            <button class="button" id="signIn">Sign in</button>
+            <button class="button" id="cart">Cart</button>
+        </ul>
+    </nav>
+
+    <div class="restaurants"></div>
+
+    <div id="addARestaurantModal" class="modal">
+        <div class ="modalContent">
+            <h3>Add your Restaurant</h3>
+            <div class="input">
+                <input id="name" type="text" class="validate">
+                <label for="name">Name</label>
+            </div>
+            <div class="input">
+                <input id="img" type="text" class="validate">
+                <label for="img">Image URL</label>
+            </div>
+            <div class="input">
+                <input id="open" type="number" class="validate">
+                <label for="open">Open Time (1-24)</label>
+            </div>
+            <div class="input">
+                <input id="close" type="number" class="validate">
+                <label for="close">Close Time (1-24)</label>
+            </div>
+            <div class="input">
+                <input id="time" type="number" class="validate">
+                <label for="time">Response Time</label>
+            </div>
+            <div class="input">
+                <input id="item" type="text" class="validate">
+                <label for="item">Menu Item (Name Price)</label>
+            </div>
+            <button class="button" id="submitItem">Submit Item</button>
+            <button class="button" id="submitRestaurant">Submit Restaurant</button>
+        </div>
+    </div>
+
+    <div id="cartModal" class="modal">
+        <div class="modalContent">
+            <h3>Your Cart</h3>
+            <ul id="items"></ul>
+            <p id="total"></p>
+        </div>
+    </div>
+
+    <div id="menuModal" class="modal">
+        <div class="modalContent">
+            <h3>Select your Items</h3>
+            <ul id="menu"></ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="styling"></script>
+</body>
+</html>

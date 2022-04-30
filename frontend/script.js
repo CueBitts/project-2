@@ -82,26 +82,29 @@ window.addEventListener('click', (event) => {
 const cart = document.getElementById('cart')
 const cartModal = document.getElementById('cartModal')
 
+const checkout = document.getElementById('checkout')
+const clear = document.getElementById('clear')
+
+const itemList = document.getElementById('itemList')
+const totalList = document.getElementById('totalList')
+
 //opens modal
 cart.addEventListener('click', () => {
     cartModalOpen()
 })
 
 function cartModalOpen() {
-    const itemList = document.getElementById('itemList')
-    const totalList = document.getElementById('totalList')
-    
     itemList.innerText = ''
     totalList.innerText = ''
 
     cartModal.style.display = 'block'
     
     items.forEach(item => {
-        const name = document.createElement('name')
+        const name = document.createElement('li')
         name.innerText = item.name
         name.classList.add('name')
 
-        const price = document.createElement('price')
+        const price = document.createElement('li')
         price.innerText = item.price
         name.classList.add('price')
 
@@ -120,10 +123,24 @@ window.addEventListener('click', (event) => {
     }
 })
 
+//checkout/clear
+clear.addEventListener('click', () => {
+    clearCart()
+})
+checkout.addEventListener('click', () => {
+    clearCart()
+})
+
+function clearCart() {
+    items = []
+    itemList.innerText = ''
+    totalList.innerText = ''
+}
+
 
 
 //menu modal
-const items = []
+let items = []
 let total = 0
 
 const menuModal = document.getElementById('menuModal')
@@ -141,7 +158,7 @@ function menuModalOpen(restaurantData) {
     menuModal.style.display = 'block'
     menuList.innerHTML = ''
     restaurantData.menu.forEach(item => {
-        const name = document.createElement('name')
+        const name = document.createElement('li')
         name.innerText = item.name
         name.classList.add('name')
 
@@ -149,9 +166,9 @@ function menuModalOpen(restaurantData) {
             addItem(item)
         })
 
-        const price = document.createElement('price')
+        const price = document.createElement('li')
         price.innerText = item.price
-        name.classList.add('price')
+        price.classList.add('price')
 
         menuList.appendChild(name)
         menuList.appendChild(price)
@@ -176,11 +193,11 @@ function addRestaurants (restaurantData) {
     restaurants.innerHTML = ''
 
     restaurantData.forEach(restaurant => {
-        const name = document.createElement('name')
+        const name = document.createElement('li')
         name.innerText = restaurant.name
         name.classList.add('name')
 
-        const hrs = document.createElement('hrs')
+        const hrs = document.createElement('li')
         if(today.getHours() > restaurant.hrs[0] && today.getHours() < restaurant.hrs[1]) {
             hrs.innerText = 'Open Now'
         }
@@ -189,7 +206,7 @@ function addRestaurants (restaurantData) {
         }
         hrs.classList.add('hrs')
 
-        const time = document.createElement('time')
+        const time = document.createElement('li')
         time.innerText = `Usually responds in about ${restaurant.time} minutes.`
         time.classList.add('time')
         
@@ -197,7 +214,7 @@ function addRestaurants (restaurantData) {
         img.setAttribute('src', restaurant.img)
         img.classList.add('img')
 
-        const restaurantHelper = document.createElement('restaurantHelper')
+        const restaurantHelper = document.createElement('ul')
         restaurantHelper.addEventListener('click', () => {
             menuModalOpen(restaurant)
         })

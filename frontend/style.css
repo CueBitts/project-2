@@ -1,3 +1,8 @@
+nav {
+    display: inline;
+    background:black;
+}
+
 .nav {
     text-align: right;
 }
@@ -27,9 +32,22 @@
 }
 
 .modalContent {
+    display: block;
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
+}
+
+ul {
+    list-style: none;
+}
+
+.name {
+    float: left;
+}
+
+.price {
+    text-align: right;
 }

@@ -10,7 +10,7 @@ const mongoURI =
 const db = mongoose.connection
 
 mongoose
-    .connect(mongoURI)
+    .connect(process.env.mongoURI || 'mongodb://localhost/project-2')
     .then((instance) =>
         console.log(`Connected to DB ${instance.connections[0].name}`)
     )

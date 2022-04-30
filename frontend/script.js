@@ -1,15 +1,16 @@
+//add a restaurant modal
+let addRestaurant = ''
+
 const submitItem = document.getElementById('submitItem')
+
 const submitRestaurant = document.getElementById('submitRestaurant')
-const menuModal = document.getElementById('menuModal')
-const menuList = document.getElementById('menu')
-const items = []
-const restaurants = document.querySelector('.restaurants')
-const today = new Date()
+let addMenu = []
 
-let currentlyEditing = ''
+const addARestaurant = document.getElementById('addARestaurant')
+const addARestaurantModal = document.getElementById('addARestaurantModal')
 
+//modal content
 function editModal(restaurant) {
-    $('#modal-edit').modal('open')
     const nameEdit = document.getElementById('name')
     const imgEdit = document.getElementById('img')
     const openEdit = document.getElementById('open')
@@ -24,25 +25,19 @@ function editModal(restaurant) {
     timeEdit.value = restaurant.time
     itemEdit.value = restaurant.item
 
-    currentlyEditing = restaurant._id
+    addRestaurant = restaurant._id
 }
 
-const addARestaurant = document.getElementById('addARestaurant')
-addARestaurant.addEventListener('click', () => {
-    addARestaurantModalOpen()
+//add item button
+submitItem.addEventListener('click', () => {
+    const itemName = document.getElementById('itemName').value
+    const itemPrice = document.getElementById('itemPrice').value
+
+    let item = {name: itemName, price: itemPrice}
+    addMenu.push(item)
 })
 
-window.addEventListener('click', (event) => {
-    if(event.target == addARestaurantModal) {
-        addARestaurantModal.style.display = 'none'
-    }
-})
-
-const addARestaurantModal = document.getElementById('addARestaurantModal')
-function addARestaurantModalOpen() {
-    addARestaurantModal.style.display = 'block'
-}
-
+//add restaurant button
 submitRestaurant.addEventListener('click', () => {
     const name = document.getElementById('name').value
     const img = document.getElementById('img').value
@@ -51,33 +46,47 @@ submitRestaurant.addEventListener('click', () => {
     const hrs = []
     hrs.push(open, close)
     const time = document.getElementById('time').value
-    const item = document.getElementById('item').value
+    const menu = addMenu
 
-    axios.post(`http://localhost:3000/restaurants/${currentlyEditing}`, {
+    axios.post(`http://localhost:3000/restaurants/${addRestaurant}`, {
         name,
         img,
         hrs,
         time,
-        item
+        menu
     }).then((resp) => {
         console.log(resp)
         addRestaurants(resp.data)
-        $('#modal-edit').modal('close')
     })
 })
 
+//opens modal
+addARestaurant.addEventListener('click', () => {
+    addARestaurantModalOpen()
+})
+
+function addARestaurantModalOpen() {
+    addARestaurantModal.style.display = 'block'
+}
+
+//closes modal
+window.addEventListener('click', (event) => {
+    if(event.target == addARestaurantModal) {
+        addARestaurantModal.style.display = 'none'
+    }
+})
+
+
+
+//cart modal
 const cart = document.getElementById('cart')
+const cartModal = document.getElementById('cartModal')
+
+//opens modal
 cart.addEventListener('click', () => {
     cartModalOpen()
 })
 
-window.addEventListener('click', (event) => {
-    if(event.target == cartModal) {
-        cartModal.style.display = 'none'
-    }
-})
-
-const cartModal = document.getElementById('cartModal')
 function cartModalOpen() {
     const itemList = document.getElementById('itemList')
     const totalList = document.getElementById('totalList')
@@ -104,12 +113,30 @@ function cartModalOpen() {
     totalList.appendChild(totalHelper)
 }
 
+//closes modal
 window.addEventListener('click', (event) => {
-    if(event.target == menuModal) {
-        menuModal.style.display = 'none'
+    if(event.target == cartModal) {
+        cartModal.style.display = 'none'
     }
 })
 
+
+
+//menu modal
+const items = []
+let total = 0
+
+const menuModal = document.getElementById('menuModal')
+const menuList = document.getElementById('menu')
+
+//adds item
+function addItem(item) {
+    items.push(item)
+    total += item.price
+    console.log(items)
+}
+
+//opens modal
 function menuModalOpen(restaurantData) {
     menuModal.style.display = 'block'
     menuList.innerHTML = ''
@@ -131,16 +158,23 @@ function menuModalOpen(restaurantData) {
     })
 }
 
-let total = 0
+//closes modal
+window.addEventListener('click', (event) => {
+    if(event.target == menuModal) {
+        menuModal.style.display = 'none'
+    }
+})
 
-function addItem(item) {
-    items.push(item)
-    total += item.price
-    console.log(items)
-}
 
+
+// add restaurants
+const restaurants = document.querySelector('.restaurants')
+const today = new Date()
+
+// adds restaurants
 function addRestaurants (restaurantData) {
     restaurants.innerHTML = ''
+
     restaurantData.forEach(restaurant => {
         const name = document.createElement('name')
         name.innerText = restaurant.name
@@ -179,5 +213,3 @@ function addRestaurants (restaurantData) {
 axios.get('http://localhost:3000/restaurants').then(response => {
     addRestaurants(response.data)
 })
-
-$('.modal').modal()

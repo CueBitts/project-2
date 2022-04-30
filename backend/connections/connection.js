@@ -6,7 +6,7 @@ const db = mongoose.connection
 mongoose
     .connect(mongoURI)
     .then((instance) =>
-        console.log(`connected to DB; ${instance.connections[0].name}`)
+        console.log(`connected to DB ${instance.connections[0].name}`)
     )
     .catch((error) =>
         console.log('connection failed', error)

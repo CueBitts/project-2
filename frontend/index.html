@@ -13,7 +13,6 @@
         <h1>POST-mates</h1>
         <ul class="nav">
             <button class="button" id="addARestaurant">Add a Restaurant</button>
-            <!-- <button class="button" id="signIn">Sign in</button> -->
             <button class="button" id="cart">Cart</button>
         </ul>
     </nav>
@@ -44,10 +43,14 @@
                 <label for="time">Response Time</label>
             </div>
             <div class="input">
-                <input id="item" type="text" class="validate">
-                <label for="item">Menu Item (Name Price)</label>
+                <input id="itemName" type="text" class="validate">
+                <label for="itemName">Menu Item Name</label>
             </div>
-            <button class="button" id="submitItem">Submit Item</button>
+            <div class="input">
+                <input id="itemPrice" type="number" class="validate">
+                <label for="itemPrice">Menu Item Price</label>
+            </div>
+            <button class="button" id="submitItem">Submit Menu Item</button>
             <button class="button" id="submitRestaurant">Submit Restaurant</button>
         </div>
     </div>
@@ -68,6 +71,5 @@
     </div>
 
     <script src="script.js"></script>
-    <script src="styling"></script>
 </body>
 </html>
